@@ -1,6 +1,6 @@
-# Verso Navbar
+# Verso Panel
 
-Experimental navbar for Verso.
+Experimental panel for Verso.
 
 ## Development
 
