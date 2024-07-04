@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Input } from 'flowbite-svelte';
   import PrevPageIcon from '@images/arrow-left.png';
   import NextPageIcon from '@images/arrow-right.png';
@@ -8,6 +8,8 @@
   import MinimizeIcon from '@images/minimize.png';
 
   import NavBtn from './btn.svelte';
+
+  let url = '';
 
   function onClickPrev() {
     console.log('click prev');
@@ -33,6 +35,10 @@
     console.log('maximize');
     window.prompt('MAXIMIZE');
   }
+  function onEnterNavigation(url: string) {
+    console.log(`navigate to url: ${url}`);
+    window.prompt(`NAVIGATE_TO:${url}`);
+  }
 </script>
 
 <div class="navbar box-border w-full">
@@ -47,6 +53,8 @@
         class="h-7"
         type="text"
         placeholder="Search or enter website name"
+        bind:value={url}
+        on:keydown={(e) => e.code === 'Enter' && onEnterNavigation(url)}
       />
     </div>
     <div class="float-right inline-block">
