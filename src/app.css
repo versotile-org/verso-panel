@@ -4,6 +4,12 @@
 
 @tailwind utilities;
 
+html {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
 }
