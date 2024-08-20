@@ -66,6 +66,7 @@
 
 <style lang="scss">
   .navbar {
+    font-family: Arial, sans-serif;
     height: 50px;
     padding-top: 4px;
     padding-left: 80px;
