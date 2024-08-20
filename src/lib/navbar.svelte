@@ -43,21 +43,20 @@
 
 <div class="navbar box-border w-full">
   <div class="inline-block w-full">
-    <div class="inline-block w-1/4">
+    <div class="inline-block float-left items w-1/4">
       <NavBtn on:click={onClickPrev} icon={PrevPageIcon} />
       <NavBtn on:click={onClickForward} icon={NextPageIcon} />
       <NavBtn on:click={onClickRefresh} icon={RefreshIcon} />
     </div>
     <div class="inline-block w-1/2">
       <Input
-        class="h-7"
         type="text"
         placeholder="Search or enter website name"
         bind:value={url}
         on:keydown={(e) => e.code === 'Enter' && onEnterNavigation(url)}
       />
     </div>
-    <div class="float-right inline-block">
+    <div class="inline-block float-right items">
       <NavBtn on:click={onClickMinimize} icon={MinimizeIcon} />
       <NavBtn on:click={onClickMaximize} icon={MaximizeIcon} />
       <NavBtn on:click={onClickClose} icon={CloseIcon} />
@@ -68,9 +67,12 @@
 <style lang="scss">
   .navbar {
     background-color: #fafafa;
-    height: 38px;
-    padding-top: 6px;
+    height: 50px;
+    padding-top: 4px;
     padding-left: 80px;
     padding-right: 10px;
+  }
+  .items {
+    padding-top: 8px;
   }
 </style>
