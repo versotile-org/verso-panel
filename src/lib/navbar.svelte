@@ -66,7 +66,6 @@
 
 <style lang="scss">
   .navbar {
-    background-color: #fafafa;
     height: 50px;
     padding-top: 4px;
     padding-left: 80px;
