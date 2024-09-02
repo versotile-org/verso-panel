@@ -6,6 +6,7 @@
   import CloseIcon from '@images/close.png';
   import MaximizeIcon from '@images/maximize.png';
   import MinimizeIcon from '@images/minimize.png';
+  import NewWindowIcon from '@images/new-window.png';
 
   import NavBtn from './btn.svelte';
 
@@ -22,6 +23,10 @@
   function onClickRefresh() {
     console.log('click refresh');
     window.prompt('REFRESH');
+  }
+  function onClickNewWindow() {
+    console.log('click new window');
+    window.prompt('NEW_WINDOW');
   }
   function onClickClose() {
     console.log('close');
@@ -41,14 +46,18 @@
   }
 </script>
 
-<div class="navbar box-border w-full">
-  <div class="inline-block w-full">
-    <div class="inline-block float-left items w-1/4">
-      <NavBtn on:click={onClickPrev} icon={PrevPageIcon} />
-      <NavBtn on:click={onClickForward} icon={NextPageIcon} />
-      <NavBtn on:click={onClickRefresh} icon={RefreshIcon} />
+<div class="navbar flex box-border w-full">
+  <div class="flex flex-1 items-center gap-1">
+    <div class="flex flex-1 justify-between items-center gap-1">
+      <div>
+        <NavBtn on:click={onClickPrev} icon={PrevPageIcon} />
+        <NavBtn on:click={onClickForward} icon={NextPageIcon} />
+      </div>
+      <div>
+        <NavBtn on:click={onClickNewWindow} icon={NewWindowIcon} />
+      </div>
     </div>
-    <div class="inline-block w-1/2">
+    <div class="flex-2 w-1/2">
       <Input
         type="text"
         placeholder="Search or enter website name"
@@ -56,10 +65,15 @@
         on:keydown={(e) => e.code === 'Enter' && onEnterNavigation(url)}
       />
     </div>
-    <div class="inline-block float-right items">
-      <NavBtn on:click={onClickMinimize} icon={MinimizeIcon} />
-      <NavBtn on:click={onClickMaximize} icon={MaximizeIcon} />
-      <NavBtn on:click={onClickClose} icon={CloseIcon} />
+    <div class="flex flex-1 items-center justify-between gap-1">
+      <div>
+        <NavBtn on:click={onClickRefresh} icon={RefreshIcon} />
+      </div>
+      <div>
+        <NavBtn on:click={onClickMinimize} icon={MinimizeIcon} />
+        <NavBtn on:click={onClickMaximize} icon={MaximizeIcon} />
+        <NavBtn on:click={onClickClose} icon={CloseIcon} />
+      </div>
     </div>
   </div>
 </div>
@@ -67,11 +81,7 @@
 <style lang="scss">
   .navbar {
     height: 50px;
-    padding-top: 4px;
     padding-left: 80px;
     padding-right: 10px;
-  }
-  .items {
-    padding-top: 8px;
   }
 </style>
