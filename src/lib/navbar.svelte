@@ -99,6 +99,7 @@
 
 <style lang="scss">
   .navbar {
+    font-family: Arial, sans-serif;
     height: 50px;
     padding-left: 10px;
     padding-right: 10px;
