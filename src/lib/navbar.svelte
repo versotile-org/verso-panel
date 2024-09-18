@@ -62,13 +62,23 @@
     console.log(`navigate to url: ${url}`);
     window.prompt(`NAVIGATE_TO:${url}`);
   }
+  function onDragWindow(ev: MouseEvent) {
+    if (ev.buttons === 1) {
+      console.log('drag window');
+      window.prompt('DRAG_WINDOW');
+    }
+  }
 </script>
 
 <div
   class="navbar flex box-border w-full items-center gap-1"
   bind:this={navbarEl}
+  on:mousedown|self={onDragWindow}
 >
-  <div class="flex flex-1 justify-between gap-1">
+  <div
+    class="flex flex-1 justify-between gap-1"
+    on:mousedown|self={onDragWindow}
+  >
     <div>
       <NavBtn on:click={onClickPrev} icon={PrevPageIcon} />
       <NavBtn on:click={onClickForward} icon={NextPageIcon} />
@@ -85,7 +95,10 @@
       on:keydown={(e) => e.code === 'Enter' && onEnterNavigation(url)}
     />
   </div>
-  <div class="flex flex-1 justify-between gap-1">
+  <div
+    class="flex flex-1 justify-between gap-1"
+    on:mousedown|self={onDragWindow}
+  >
     <div>
       <NavBtn on:click={onClickRefresh} icon={RefreshIcon} />
     </div>
