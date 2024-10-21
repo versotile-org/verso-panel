@@ -10,20 +10,20 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^3.0.2",
-    "@tsconfig/svelte": "^5.0.2",
-    "@types/node": "^20.12.12",
-    "autoprefixer": "^10.4.16",
-    "flowbite": "^2.3.0",
-    "flowbite-svelte": "^0.46.1",
-    "postcss": "^8.4.33",
-    "sass": "^1.77.2",
-    "svelte": "^4.2.12",
-    "svelte-check": "^3.6.7",
-    "tailwindcss": "^3.4.1",
-    "tslib": "^2.6.2",
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0",
-    "vite-plugin-singlefile": "^2.0.1"
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "@tsconfig/svelte": "^5.0.4",
+    "@types/node": "^20.16.13",
+    "autoprefixer": "^10.4.20",
+    "flowbite": "^2.5.2",
+    "flowbite-svelte": "^0.46.23",
+    "postcss": "^8.4.47",
+    "sass": "^1.80.3",
+    "svelte": "^4.2.19",
+    "svelte-check": "^3.8.6",
+    "tailwindcss": "^3.4.14",
+    "tslib": "^2.8.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.9",
+    "vite-plugin-singlefile": "^2.0.2"
   }
 }

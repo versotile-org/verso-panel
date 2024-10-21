@@ -5,6 +5,16 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+      sass: {
+        api: 'modern-compiler',
+      },
+    },
+  },
   plugins: [
     svelte({
       onwarn(warning, defaultHandler) {

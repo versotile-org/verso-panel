@@ -68,16 +68,22 @@
       window.prompt('DRAG_WINDOW');
     }
   }
+  function onDbClickPanel() {
+    console.log('double click panel');
+    window.prompt('DBCLICK_PANEL');
+  }
 </script>
 
 <div
   class="navbar flex box-border w-full items-center gap-1"
   bind:this={navbarEl}
   on:mousedown|self={onDragWindow}
+  on:dblclick|self={onDbClickPanel}
 >
   <div
     class="flex flex-1 justify-between gap-1"
     on:mousedown|self={onDragWindow}
+    on:dblclick|self={onDbClickPanel}
   >
     <div>
       <NavBtn on:click={onClickPrev} icon={PrevPageIcon} />
@@ -98,6 +104,7 @@
   <div
     class="flex flex-1 justify-between gap-1"
     on:mousedown|self={onDragWindow}
+    on:dblclick|self={onDbClickPanel}
   >
     <div>
       <NavBtn on:click={onClickRefresh} icon={RefreshIcon} />
