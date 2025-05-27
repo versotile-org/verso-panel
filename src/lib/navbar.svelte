@@ -94,16 +94,6 @@
           tabs = tabs; // trigger svelte to re-render
         }
       },
-      setBookmarks: (bookmarks_raw: string) => {
-        bookmarks = JSON.parse(bookmarks_raw);
-      },
-      appendBookmark: (name: string | null, url: string) => {
-        if (name === null) {
-          name = url;
-        }
-        bookmarks.push({ name, url });
-        bookmarks = bookmarks; // trigger svelte to re-render
-      },
       showDownloadBtn: (show: boolean) => {
         showDownloadBtn = show;
       },
@@ -194,6 +184,18 @@
     window.prompt('DBCLICK_PANEL');
   }
 
+  function requestBookmark() {
+    const response = window.prompt('UPDATE_BOOKMARK')
+    if (response !== null) {
+      const status = JSON.parse(response) as { [url: string]: Bookmark }
+      bookmarks = Object.values(status)
+    }
+  }
+
+  setInterval(() => {
+    requestBookmark()
+  }, 2000)
+
   /* tabs */
 
   let activeTabIdx = 0;
@@ -235,6 +237,9 @@
   function onClickNavigateBookmark(idx: CustomEvent<number>) {
     navigateBookmark(idx.detail);
   }
+  function onClickBookmarkManager() {
+    openBookmarkManager();
+  }
   function activateTab(idx: number) {
     if (idx >= tabs.length || idx < 0) {
       console.error(`Invalid tab index: ${idx}`);
@@ -260,6 +265,10 @@
 
     const bookmark = bookmarks[idx];
     window.prompt(`NAVIGATE_TO:${bookmark.url}`);
+  }
+  function openBookmarkManager()
+  {
+    window.prompt('OPEN_BOOKMARK_MANAGER');
   }
   function calcNewIdxAfterClosed(idx: number) {
     if (idx < activeTabIdx) {
@@ -384,7 +393,7 @@
     </div>
   </div>
   {#if bookmarks.length > 0}
-    <BookmarkBar {bookmarks} on:navigate-bookmark={onClickNavigateBookmark} />
+    <BookmarkBar {bookmarks} on:navigate-bookmark={onClickNavigateBookmark} on:open-bookmark-manager={onClickBookmarkManager}/>
   {/if}
   {#if tabs.length > 1}
     <TabBar

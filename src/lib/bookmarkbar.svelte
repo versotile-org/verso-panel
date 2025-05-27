@@ -3,19 +3,25 @@
     name: string;
     url: string;
   }
+  import NavBtn from './btn.svelte';
+  import BookmarkManagerIcon from '@images/bookmark-manager.png';
 </script>
 
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
   export let bookmarks: Bookmark[] = [];
   function navigateBookmark(idx: number) {
-    dispatch('navigate-bookmark', idx);
+    dispatch("navigate-bookmark", idx);
+  }
+  function navigateBookmarkManager() {
+    dispatch("open-bookmark-manager");
   }
 </script>
 
 <div id="bookmark-bar" class="bookmark-bar">
+  <NavBtn on:click={navigateBookmarkManager} icon={BookmarkManagerIcon} />
   {#each bookmarks as bookmark, index}
     <div
       class="bookmark bg-zinc-200 hover:bg-zinc-100 transition-[background-color] duration-100"
@@ -49,7 +55,7 @@
     cursor: default;
     user-select: none;
   }
-  .bookmark:hover{
+  .bookmark:hover {
     display: flex;
     background-color: #dfdfdf;
   }
