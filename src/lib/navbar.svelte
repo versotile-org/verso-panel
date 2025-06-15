@@ -23,6 +23,7 @@
 
   let navbarEl: HTMLDivElement | null = null;
   let navbarUrl: string = '';
+  let navbarUrlInputEl: HTMLInputElement | undefined = undefined;
 
   // Window Dragging
   let startDragging: boolean = false;
@@ -96,6 +97,10 @@
       },
       showDownloadBtn: (show: boolean) => {
         showDownloadBtn = show;
+      },
+      focusUrlInput: () => {
+        console.log('focus url input');
+        navbarUrlInputEl?.focus();
       },
     },
   });
@@ -185,10 +190,10 @@
   }
 
   function requestBookmark() {
-    const response = window.prompt('UPDATE_BOOKMARK')
+    const response = window.prompt('UPDATE_BOOKMARK');
     if (response !== null) {
-      const status = JSON.parse(response) as { [url: string]: Bookmark }
-      bookmarks = Object.values(status)
+      const status = JSON.parse(response) as { [url: string]: Bookmark };
+      bookmarks = Object.values(status);
     }
   }
 
@@ -266,8 +271,7 @@
     const bookmark = bookmarks[idx];
     window.prompt(`NAVIGATE_TO:${bookmark.url}`);
   }
-  function openBookmarkManager()
-  {
+  function openBookmarkManager() {
     window.prompt('OPEN_BOOKMARK_MANAGER');
   }
   function calcNewIdxAfterClosed(idx: number) {
@@ -319,7 +323,7 @@
 
 <div>
   <div
-    class="navbar flex box-border w-full items-center gap-1"
+    class="navbar flex box-border w-full items-center gap-6"
     bind:this={navbarEl}
     on:mousemove={onPanelMouseMove}
     on:mousedown|self={onPanelMouseDown}
@@ -358,8 +362,9 @@
       <Input
         type="text"
         placeholder="Search or enter website name"
+        bind:elementRef={navbarUrlInputEl}
         bind:value={navbarUrl}
-        on:keydown={(e) => e.code === 'Enter' && onEnterNavigation(navbarUrl)}
+        onkeydown={(e) => e.code === 'Enter' && onEnterNavigation(navbarUrl)}
       />
     </div>
     <div
@@ -393,7 +398,11 @@
     </div>
   </div>
   {#if bookmarks.length > 0}
-    <BookmarkBar {bookmarks} on:navigate-bookmark={onClickNavigateBookmark} on:open-bookmark-manager={onClickBookmarkManager}/>
+    <BookmarkBar
+      {bookmarks}
+      on:navigate-bookmark={onClickNavigateBookmark}
+      on:open-bookmark-manager={onClickBookmarkManager}
+    />
   {/if}
   {#if tabs.length > 1}
     <TabBar
